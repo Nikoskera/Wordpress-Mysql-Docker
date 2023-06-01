@@ -1,0 +1,59 @@
+*Welcome to a Wordpress PhpMyAdmin docker container !*
+-----------------------------------------------------
+
+Wordpress is a open source software that you can use to create a website, blog or app
+
+
+* Q: Yes but PhpMyAdmin?
+
+
+* A: PhpMyAdmin is a free and open source administration tool for my MySQL and MariaDb. As a portable web application written primarily in PHP, it has become one of the most popular MySQL administration tools, especially for web hosting services.
+
+About Docker 
+~~~~~~~~~~~~
+
+Docker is an open source software platform that implements Virtualization at the Operating System level. Essentially Docker offers automated processes for developing applications in isolated User Areas called Software Containers
+
+About Project 
+~~~~~~~~~~~~
+----------
+version '3'
+----------
+
+This line specifies the version of Docker Compose to use for this file 
+---------
+services:
+---------
+This line starts the services section of the Docker Compose file, where you define the services thatmake up your application
+
+Our first service is Database.The name i call is db and the 
+------
+image:
+------ 
+is MySQL.The image line specifies the base Docker image to use for this service. In this case, it’s the MySQL image.
+-----------
+enviroment:
+-----------
+We have our databases names and secret passwords.This section sets environment variables that are used inside the container
+--------
+restart:
+--------
+This is a restart policy that happens when the server reboots the container restart as well
+---------
+networks:
+---------
+We want all our services run docker network and we call it wpsite but you can name it whatever you want 
+-----------
+depends_on:
+-----------
+This means that depends on a service and in our service depends on db 
+--------
+volumes:
+--------
+We need that especially for wordpress.Wordpress obviously has files so we need basically take the files that are in container like the Wordpress admin folder
+
+About build
+~~~~~~~~~~~
+The only thing we need is the *docker-compose up -d* on terminal in order to start the container.After the build with *docker ps* we can see our new containers and images.
+
+The port we need for word press is *localhost:8000* and the port for PhpMyAdmin is *localhost:8181*
